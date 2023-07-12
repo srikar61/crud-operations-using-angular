@@ -1,0 +1,23 @@
+<h2>CRUD Application</h2>
+
+<!-- Display Records -->
+<h3>Records:</h3>
+<ul>
+  <li *ngFor="let record of records">
+    {{ record.id }} - {{ record.name }} - {{ record.email }}
+    <button (click)="editRecord(record)">Edit</button>
+    <button (click)="deleteRecord(record.id)">Delete</button>
+  </li>
+</ul>
+
+<!-- Create and Edit Form -->
+<h3>Create/Edit Record</h3>
+<form #recordForm="ngForm" (ngSubmit)="saveRecord()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" [(ngModel)]="record.name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" [(ngModel)]="record.email" required>
+
+  <button type="submit">{{ isEditing ? 'Update' : 'Create' }}</button>
+</form>
